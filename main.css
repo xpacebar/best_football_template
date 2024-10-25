@@ -1,0 +1,975 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+body{
+    background-color: #162623; /* Dark Slate Gray */
+    color: #FFFFFF; /* White */
+    overflow-x: hidden;
+}
+
+
+/* Preloader */
+#preloader {
+    overflow: hidden;
+    background-color: #162623;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 99999;
+    color: #f0f5f7;
+}
+  
+#preloader .jumper {
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    position: absolute;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+}
+  
+#preloader .jumper > div {
+    background-color: #f0f5f7;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    position: absolute;
+    opacity: 0;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: jumper 1s 0s linear infinite;
+    animation: jumper 1s 0s linear infinite;
+}
+  
+#preloader .jumper > div:nth-child(2) {
+    -webkit-animation-delay: 0.33333s;
+    animation-delay: 0.33333s;
+}
+  
+#preloader .jumper > div:nth-child(3) {
+    -webkit-animation-delay: 0.66666s;
+    animation-delay: 0.66666s;
+}
+  
+@-webkit-keyframes jumper {
+    0% {
+      opacity: 0;
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    }
+    5% {
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      opacity: 0;
+    }
+}
+  
+@keyframes jumper {
+    0% {
+      opacity: 0;
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    }
+    5% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+}
+
+
+/* Back to top */
+.back-to-top {
+    position: fixed;
+    display:none;
+    right: 35px;
+    bottom: 45px;
+    z-index: 1000;
+    color: #f0f5f7;
+    background-color: #162623;
+    border:1px solid #000000;
+    border-radius: 20% !important;
+    font-size:1.1rem;
+}
+
+.back-to-top:hover, .back-to-top:active {
+    color: #f0f5f7;
+    background-color: #162623;
+}
+
+
+
+
+/*** INDEX PAGE STYLING ***/
+
+/* Page layout */
+.layout{
+    background-color: #f0f5f7;
+}
+
+
+
+/* Trending Now Heading */
+h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    line-height: 1.1;
+    white-space: nowrap; 
+    flex-shrink: 0;
+    font-weight: 700;
+    color: #f0f5f7;
+    letter-spacing: 2px;
+}
+
+/* Trending Section Container */
+#trending-section {
+    display: flex;
+    align-items: center;
+    background-color: #162623;
+    z-index: 1030;
+    padding: 0 5px; 
+    top: 0; 
+    width: 100%;
+    min-height:70px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* News Container Wrapper */
+#news-container-wrapper {
+    overflow: hidden; 
+    margin-left: 6px;
+    flex-grow: 1;
+}
+
+/* News Container */
+#news-container {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+/* News Item Styling */
+.news-item {
+    display: inline-block;
+    width: 100%; /* Ensure it takes up full width */
+    white-space: normal; /* Allow wrapping */
+    text-align: left;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: #FFFFFF;
+    word-spacing: 2px;
+}
+
+.news-item:hover{
+    color:#f0f5f7;
+}
+
+/* Hide other items initially, let JS manage this */
+.news-item:not(:first-child) {
+    display: none;
+}
+
+
+
+/* Nav */
+
+.fixed-nav {
+    z-index: 1030;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #162623;
+    z-index: 1000;
+    /* height:200px; */
+}
+
+.navbar-brand{
+    color:#f0f5f7;
+    letter-spacing: 3px;
+    font-weight: 600;
+}
+
+.navbar-brand:hover,.navbar-brand:focus{
+    color:#f0f5f7
+}
+
+
+.nav-item a{
+    color: #FFFFFF;
+    font-size: 1rem;
+    margin-right: 7px;
+    word-spacing: 2px;
+    padding: 0px;
+    position:relative;
+}
+
+.nav-item a:first-child{
+    margin-left:5px;
+}
+
+
+
+
+/* Add icons before and after each nav-item link */
+.nav-item a::before {
+    content: "⚽"; /* FontAwesome Football Icon */
+    font-family: 'FontAwesome';
+    position: absolute;
+    font-size: 17px;
+    top: -25px; /* Position the icon above the link text */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease; /* Smooth transition on hover */
+}
+
+.nav-item a::after {
+    content: "\f068"; /* FontAwesome Slash Icon */
+    font-family: 'FontAwesome';
+    position: absolute;
+    bottom: -20px; /* Position the icon below the link text */
+    right: 50%;
+    transform: translateX(50%);
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease; /* Smooth transition on hover */
+}
+
+/* Show icons on hover */
+.nav-item a:hover::before,
+.nav-item a:hover::after,
+.nav-item a:focus::before,
+.nav-item a:focus::after {
+    opacity: 1; /* Show icons when hovering over the link */
+
+}
+ .nav-item a:hover, .nav-item a:focus{
+    color:#ffffff
+ }
+
+ .nav-item .active{
+    color:#ffffff !important;
+ }
+
+ .nav-item .active::before,
+ .nav-item .active::after{
+    opacity: 1;
+    color:#ffffff;
+ }
+
+
+
+
+
+/* Nav Toggler */
+/* Customizing the hamburger icon */
+.navbar-toggler {
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0;
+}
+
+.navbar-toggler:focus {
+    outline: none;
+    box-shadow: none; /* Ensure no focus outline or shadow */
+}
+
+
+
+/* Remove outline and shadow from the entire icon */
+.navbar-toggler-icon {
+    outline: none;
+    box-shadow: none;
+    border: none;
+    background: none;
+}
+
+/* Remove outline and shadow from the div (middle bar) */
+.navbar-toggler-icon div {
+    outline: none;
+    box-shadow: none;
+}
+
+/* To ensure no focus outline on the span or div when clicked */
+.navbar-toggler-icon:focus,
+.navbar-toggler-icon div:focus,
+.navbar-toggler-icon span:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+
+
+/* Basic setup for the icon container */
+.navbar-toggler-icon {
+    position: relative;
+    width: 30px;
+    height: 3px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+/* Top, middle, and bottom bars */
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after,
+.navbar-toggler-icon div {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background-color: #f0f5f7;
+    transition: all 0.3s ease;
+}
+
+/* Position top and bottom bars */
+.navbar-toggler-icon::before {
+    top: -10px;
+}
+
+.navbar-toggler-icon::after {
+    top: 10px;
+}
+
+/* Middle bar */
+.navbar-toggler-icon div {
+    top: 0;
+}
+
+/* When toggled, rotate the top and bottom to form an X */
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon::after {
+    transform: rotate(-45deg);
+    top: 0;
+}
+
+/* Hide the middle bar when toggled */
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon div {
+    opacity: 0;
+}
+
+/* Reset everything when collapsed */
+.navbar-toggler.collapsed .navbar-toggler-icon::before,
+.navbar-toggler.collapsed .navbar-toggler-icon::after {
+    transform: none;
+}
+
+.navbar-toggler.collapsed .navbar-toggler-icon::before {
+    top: -10px;
+}
+
+.navbar-toggler.collapsed .navbar-toggler-icon::after {
+    top: 10px;
+}
+
+.navbar-toggler.collapsed .navbar-toggler-icon div {
+    opacity: 1;
+}
+
+
+
+/* Offcanvas Menu*/
+/* Off-Canvas Menu */
+.off-canvas-menu {
+    position: fixed;
+    top: 0;
+    right: -250px; /* Initially hidden off-screen */
+    width: 235px;
+    height: 100%;
+    background-color: #162623;
+    color: #f0f5f7;
+    padding-top: 56px; /* Push down below the fixed nav */
+    transition: right 0.5s ease-in-out;
+    z-index: 999; /* Below the fixed nav */
+}
+
+.off-canvas-menu ul {
+    list-style-type: none;
+    padding: 0;
+    
+}
+
+.off-canvas-menu ul li {
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    letter-spacing: 2px;
+    word-spacing: 1px;
+    margin-top:15px;
+    position: relative;
+}
+
+.off-canvas-menu ul li::before {
+    content: "⚽"; /* FontAwesome Football Icon */
+    font-family: 'FontAwesome';
+    position: absolute;
+    font-size: 17px;
+    top: -15px; /* Position the icon above the link text */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease; /* Smooth transition on hover */
+}
+
+.off-canvas-menu ul li::after {
+    content: "\f068"; /* FontAwesome Slash Icon */
+    font-family: 'FontAwesome';
+    position: absolute;
+    bottom: -10px; /* Position the icon below the link text */
+    right: 50%;
+    transform: translateX(50%);
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease; /* Smooth transition on hover */
+}
+
+/* Show icons on hover */
+.off-canvas-menu ul li:hover::before,
+.off-canvas-menu ul li:hover::after {
+    opacity: 1; /* Show icons when hovering over the link */
+
+}
+
+.off-canvas-menu ul li.active::before,
+.off-canvas-menu ul li.active::after {
+    opacity: 1; /* Show icons when hovering over the link */
+
+}
+
+
+/* .off-canvas-menu ul li:hover{
+    color:#f0f5f7;
+} */
+
+.off-canvas-menu ul li a {
+    color: #f0f5f7;
+    text-decoration: none;
+}
+
+/* .off-canvas-menu ul li a .active {
+    color: blue;
+    text-decoration: none;
+} */
+
+.off-canvas-menu ul li a:hover {
+    color:#f0f5f7;
+}
+
+.off-canvas-menu.active {
+    right: 0; 
+}
+
+/* Main */
+.main-content {
+    position: relative;
+    top:0x;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Shift main content when the menu is opened */
+.main-content.shifted {
+    transform: translateX(-235px); /* Shift to the left by the width of the menu */
+    
+}
+
+
+/* Hero Section */
+.hero_title{
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    word-spacing: 3px;
+    color:#162623;
+    font-size:1.4rem;
+    margin-bottom:6px;
+}
+
+.hero_subtitle{
+    /* line-height: 1.2; */
+    color:#000000;
+    font-size:0.8rem;
+
+}
+
+.hero_cta{
+    color:#f0f5f7;
+    background-color: #162623;
+    padding: 10px 10px;
+    word-spacing: 2px;
+    margin-top:5px;
+
+}
+
+.hero_cta:hover{
+    color:#162623;
+    background-color: #f0f5f7;
+    border:1px solid #162623;
+
+}
+
+.page_cta{
+    margin-top:5px;
+    color: #f0f5f7;
+    background-color: #162623;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    font-size: 0.7rem;
+}
+
+.page_cta:hover, .page_cta:active {
+    color:#162623;
+    background-color: #f0f5f7;
+    border:1px solid #162623;
+}
+
+
+
+.carousel-item {
+    position: relative;
+}
+
+.hero_headline {
+    position: absolute;
+    bottom: 0px;
+    left: 0px; /* Keeping the left as 0px as per your request */
+    width: 70%;
+    text-align: start;
+    margin: 0;
+    background-color: #162623;
+    color: #f0f5f7;
+    padding: 7px 5px;
+    line-height: 1;
+    font-size: 1.5rem; /* Base font size */
+    overflow-wrap: break-word; /* To handle word wrapping */
+    height: fit-content;
+}
+
+.hero_headline h5{
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.hero_headline p{
+    font-size: 0.7rem;
+}
+
+/* Section Title */
+.section-title {
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color:#162623;
+    font-size:1rem;
+}
+
+/* Side Bar */
+
+.side-bar {
+    position: relative;
+    float: left;
+    width: 85%;
+    background-color: #f5f5f5;
+    padding: 13px 5px 0px 10px;
+    position: relative;
+    margin: 0px;
+    box-sizing: border-box;
+    overflow: hidden;
+    
+}
+
+
+.side-bar figure {
+    float: left;
+    width: 100px;
+    margin-right:5px;
+}
+
+.side-bar figure img {
+    width: 100%; /* Ensure image fills its container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+
+
+.side-bar-text h5 {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+    margin: 0px;
+    margin: 0 0 5px 0; /* Space below the heading */
+}
+
+.side-bar-text{
+    text-align: start;
+    margin-left: 120px; /* Ensure text starts after the image */
+    overflow: hidden; /* Ensure content doesn't spill out */
+}
+
+
+.side-bar-text h5 a { 
+    color: #292c31;
+    text-decoration: none;
+}
+
+.side-bar-text time {
+    font-size: 10px;
+    color: #999999;
+    display: block; /* Ensure the time appears below the text */
+    margin-top: 5px;
+}
+
+
+
+/* Football Highlights */
+
+.top-highlight{
+    margin-bottom: 30px;
+}
+.top-highlight-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+.top-highlight-description {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* Latest Football news and Trending Rumours */
+
+.home_headline{
+    background-color: #ffffff;
+    color: #2F4F4F;
+}
+
+#latest_football_news a, #trending_rumours_latest_clips a{
+    text-decoration: none;
+}
+
+/* #trending_rumours h2{
+    margin:0px;
+} */
+
+#latest_football_news  small, #trending_rumours_latest_clips small{
+    font-size:0.7rem;
+}
+
+
+/* Latest Clips */
+
+#latest_clips h5{
+    font-size: 0.9rem;
+    color:#162623;
+}
+
+
+
+
+
+
+/* Subscribe Section */
+.subscribe_title{
+    color:#162623;
+}
+
+.consent_msg{
+    color:#162623;
+}
+
+.subscribe_btn{
+    letter-spacing: 1px;
+    word-spacing: 1px;
+    color:#f0f5f7;
+    background-color: #162623;
+}
+
+.sub_but_header{
+    padding:0px;
+    background-color: #6c757d;
+    border-radius: 10px;
+}
+
+
+/* Footer Section */
+#site-footer {
+    padding:50px 15px 30px 15px;
+    font-size: 0.8rem;
+    background-color: #162623;
+    border-top: 1px solid #ebedee;
+}
+
+.footer-title{
+    color:#f0f5f7;
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    word-spacing: 2px;
+    font-size:1rem;
+}
+
+
+#site-footer h2{
+    color:#f0f5f7;
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    font-size:1rem;
+}
+
+.footer-note{
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    word-spacing:1px;
+}
+
+#site-footer .widget {
+    margin-bottom: 30px;
+}
+
+#site-footer .widget i{
+    font-size: 2rem;
+    color:#f0f5f7;
+    margin-right: 16px;
+}
+
+
+#site-footer .btn.btn-link {
+    display: block;
+    margin-bottom: 5px;
+    padding: 0;
+    text-align: left;
+    color: #f0f5f7;
+    font-weight: normal;
+    text-transform: capitalize;
+    transition: .3s;
+    text-decoration: none !important;
+    text-wrap: nowrap;
+    word-spacing: 1px;
+}
+
+#site-footer .btn.btn-link::before {
+    position: relative;
+    content: "⚽";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #f0f5f7;
+    margin-right: 10px;
+}
+
+#site-footer .btn.btn-link:hover {
+    letter-spacing: 1px;
+    box-shadow: none;
+}
+
+.developer_color{
+    color:greenyellow;
+    letter-spacing: 1px;
+    word-spacing: 1px;
+    text-decoration: none;
+
+}
+
+.developer_color:hover{
+    letter-spacing: 2px;
+    color:greenyellow;
+}
+
+
+/* Subscribe Modal */
+
+.modal-content{
+    background-color: #f0f5f7;
+}
+
+.modal-header .btn-close{
+    background-color:#f0f5f7;
+}
+
+.modal-title{
+    letter-spacing: 1px;
+    color: #000000;
+}
+
+.modal-t-name{
+    display: inline;
+}
+
+
+
+.modal_logo{
+    color:#162623;
+    letter-spacing: 2px;
+    word-spacing:1px;
+}
+
+.modal-footer button{
+    color: #f0f5f7;
+    /* border:1px solid #162623; */
+    background-color: #162623;
+}
+
+.modal-footer button:hover{
+    background-color: #f0f5f7;
+    color:#162623;
+    border:1px solid #162623;
+}
+
+.modal-body .subscribe_btn1{
+    color:#f0f5f7;
+    background-color: #162623;
+    
+}
+
+.modal-body .subscribe_btn1:hover{
+    color: #162623;
+    /* border-color: #FFD700; */
+    background-color: #f0f5f7;
+}
+
+
+
+
+/* Small Screen Devices */
+@media (max-width: 767px) {
+    .back-to-top{
+        bottom: 23px;
+        right: 8px;
+        font-size:1.5rem;
+    }
+    
+    .hero_title{
+        font-size: 0.7rem;
+        text-wrap: nowrap;
+        margin-top: 10px;
+    }
+
+    .hero_cta{
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+    .side-bar figure img {
+        width: 100%; /* Ensure image fills its container */
+        height: auto; /* Maintain aspect ratio */
+    }
+    
+    .side-bar {
+        margin:0 !important;
+        width:100%;
+    }
+
+    .section-title {
+        font-size: 0.9rem;
+    }
+    #site-footer .btn.btn-link{
+        font-size: 0.7rem;
+    }
+
+    .hero_headline{
+        position: absolute;
+        bottom: 0px;
+        padding:5px 5px 0px 5px;
+        line-height: 1;
+        width: 85%;
+        height: fit-content;
+    
+        
+    }
+
+    .hero_headline h5{
+        font-size: 0.7rem;
+        margin: 0;
+    }
+
+    .hero_headline p{
+        font-size: 0.6rem;
+    }
+
+    #latest_clips .side-bar{
+        margin-bottom: 33px !important;
+    }
+    
+}
+
+/* Medium Screen Devices */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .back-to-top{
+        bottom: 80px;
+        right: 10px;
+        font-size:1.6rem;
+    }
+
+    .side-bar {
+        margin:0 !important;
+        width:100%;
+    }
+
+    /* .quick_link_tab{
+        padding:0px 10px 0px 20px;
+    } */
+
+    #site-footer {
+        padding:70px 25px 30px 25px;
+        
+    }
+
+    .hero_headline{
+        position: absolute;
+        bottom:0px;
+        padding:5px 5px 0px 5px;
+        line-height: 1;
+        width: 85%;
+        height: fit-content;
+    
+        
+    }
+
+    .hero_headline h5{
+        font-size: 0.8rem;
+        margin: 0;
+    }
+
+    .hero_headline p{
+        font-size: 0.7rem;
+    }
+}
+
+
+/* Large screens (desktop and above) */
+@media (min-width: 1025px) {
+    #subscribe .consent_msg {
+        margin-left:-20px
+    }
+
+}
+
+
+
+
