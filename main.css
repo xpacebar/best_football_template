@@ -396,6 +396,7 @@ h2 {
 .off-canvas-menu {
     position: fixed;
     top: 0;
+    overflow-y: auto;
     right: -250px; /* Initially hidden off-screen */
     width: 235px;
     height: 100%;
