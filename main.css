@@ -394,7 +394,7 @@ h2 {
 /* Offcanvas Menu*/
 /* Off-Canvas Menu */
 .off-canvas-menu {
-    position: relative;
+    position: fixed;
     top: 0;
     overflow-y: auto;
     right: -250px; /* Initially hidden off-screen */
@@ -402,9 +402,10 @@ h2 {
     height: 100%;
     background-color: #162623;
     color: #f0f5f7;
-    padding-top: 56px; /* Push down below the fixed nav */
+    padding-top: 50px; /* Push down below the fixed nav */
     transition: right 0.5s ease-in-out;
     z-index: 999; /* Below the fixed nav */
+    padding-bottom: 20px;
 }
 
 .off-canvas-menu ul {
